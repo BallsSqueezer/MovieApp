@@ -26,15 +26,19 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [x] List anything else that you can get done to improve the app functionality!
+- [x] Add the walkthrough screen for the first time user uses tha app
+- [x] Add the splash animation after loading the app (this animation does not present when user use app for the first time)
+- [x] Use NSDefault to remember which view (tableView or collectionView) that user uses last time, so that the app will present the same view the next time user starts the app
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+![Video Walkthrough](http://imgur.com/DPZqLZQ)
 
-GIF created with [LiceCap](http://www.cockos.com/licecap/).
+GIF created with [LiceCap](http://www.cockos.com/licecap/)
+
+Custom buttons and icons downloaded from [Icons8](https://icons8.com)
 
 ## Notes
 
