@@ -27,7 +27,7 @@ The following **optional** features are implemented:
 The following **additional** features are implemented:
 
 - [x] Add the walkthrough screen for the first time user uses tha app
-- [x] Add the splash animation after loading the app (this animation does not present when user use app for the first time)
+- [x] Not to make poeple get bored while looking at the loading indicator keeps scrolling, I add the splash animation after loading the app (this animation does not present when user use app for the first time). You can still see the loading screen if you comment out the splash animation
 - [x] Use NSDefault to remember which view (tableView or collectionView) that user uses last time, so that the app will present the same view the next time user starts the app
 
 ## Video Walkthrough
@@ -41,6 +41,14 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/)
 Custom buttons and icons downloaded from [Icons8](https://icons8.com)
 
 ## Notes
+- This only work well on iPhone 5/5s
+
+## Here are the few things that need to be fixed
+- [] There is a weird transition when I tap on a cell while search bar and keyboard are still active
+- [] You still can scroll while the splash animation occurs
+- [] Sometimes the navigation bar on the Top Rated tab is replace with white blank view and I can't do anything to get it back. I don't know how to reproduce thie either, I just keep switching between tabs and keep scrolling up and down
+- [] The hide navigation bar on swipe option only works with Top Rated tab
+- [] Should spend more time working on how the app should respond when suddenly lost connection, AND when the url provide is no valid
 
 Describe any challenges encountered while building the app.
 
