@@ -33,7 +33,6 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
     var searchResults: [Movie] = []
     
     var inTableView = true
-    
     var mask: CALayer?
     
 //MARK: - UIViewController
@@ -55,6 +54,7 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
         let defauls = NSUserDefaults.standardUserDefaults()
         inTableView = defauls.boolForKey("switchView")
         
+        print(inTableView)
         let fromView = inTableView ? tableView : collectionView
         let toView = inTableView ? collectionView : tableView
         toView.alpha = 0
@@ -101,6 +101,7 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
                         
                         self.movies.append(movie)
                     }
+                    self.animate()
                     self.isLoading = false
                     self.tableView.reloadData()
                     self.collectionView.reloadData()
@@ -160,9 +161,9 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
         fromView.layer.mask = mask
         
         //twitter brand colors
-        self.view.backgroundColor = UIColor.darkGrayColor()
+        self.view.backgroundColor = UIColor.lightGrayColor()
         
-        animate()
+        //animate()
     }
     
 
@@ -297,11 +298,10 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
             toView.alpha = 1
             }, completion: { _ in
                 self.inTableView = !self.inTableView
+                print(self.inTableView)
                 let defaults = NSUserDefaults.standardUserDefaults()
                 defaults.setBool(self.inTableView, forKey: "switchView")
-                self.switchViewButton.image = self.inTableView == true ? UIImage(named: "grid") : UIImage(named: "table")
         })
-    
     }
     
     //MARK: - Helpers
@@ -381,7 +381,7 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
         
         let keyFrameAnimation = CAKeyframeAnimation(keyPath: "bounds")
         keyFrameAnimation.delegate = self
-        keyFrameAnimation.duration = 1.5
+        keyFrameAnimation.duration = 0.5
         keyFrameAnimation.beginTime = CACurrentMediaTime() + 1 //add delay of 1 second
         
         //start animation
