@@ -26,7 +26,9 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [x] List anything else that you can get done to improve the app functionality!
+- [x] Add the walkthrough screen for the first time user uses tha app
+- [x] Add the splash animation after loading the app (this animation does not present when user use app for the first time)
+- [x] Use NSDefault to remember which view (tableView or collectionView) that user uses last time, so that the app will present the same view the next time user starts the app
 
 ## Video Walkthrough
 
