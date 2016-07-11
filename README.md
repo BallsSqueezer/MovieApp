@@ -44,11 +44,12 @@ Custom buttons and icons downloaded from [Icons8](https://icons8.com)
 - This only work well on iPhone 5/5s
 
 ## Here are the few things that need to be fixed
-- [] There is a weird transition when I tap on a cell while search bar and keyboard are still active
-- [] You still can scroll while the splash animation occurs
-- [] Sometimes the navigation bar on the Top Rated tab is replace with white blank view and I can't do anything to get it back. I don't know how to reproduce thie either, I just keep switching between tabs and keep scrolling up and down
-- [] The hide navigation bar on swipe option only works with Top Rated tab
-- [] Should spend more time working on how the app should respond when suddenly lost connection, AND when the url provide is no valid
+- There is a weird transition when I tap on a cell while search bar and keyboard are still active
+- You still can scroll while the splash animation occurs
+- Sometimes the navigation bar on the Top Rated tab is replace with white blank view and I can't do anything to get it back. I don't know how to reproduce thie either, I just keep switching between tabs and keep scrolling up and down
+- The hide navigation bar on swipe option only works with Top Rated tab
+- Should spend more time working on how the app should respond when suddenly lost connection, AND when the url provide is no valid
+- I don't know why the collection view keeps showing while you load the app for the first time authough I intentionally set the bool value so that the table view shows up first when user starts the app for the first time
 
 Describe any challenges encountered while building the app.
 
