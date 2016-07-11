@@ -15,8 +15,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let nowPlayingNavigationController = storyboard.instantiateViewControllerWithIdentifier("MovieNavigationController") as! UINavigationController
+        let nowPlayingController = nowPlayingNavigationController.topViewController as! MovieListViewController
+        nowPlayingController.endpoint = "now_playing"
+        nowPlayingNavigationController.tabBarItem.title = "Now Playing"
+        nowPlayingNavigationController.tabBarItem.image = UIImage(named: "nowplaying")
+        
+        let topRatedNavigationController = storyboard.instantiateViewControllerWithIdentifier("MovieNavigationController") as! UINavigationController
+        let topRatedController = topRatedNavigationController.topViewController as! MovieListViewController
+        topRatedController.endpoint = "top_rated"
+        topRatedNavigationController.tabBarItem.title = "Top Rated"
+        topRatedNavigationController.tabBarItem.image = UIImage(named: "toprated")
+        
+        let tabBarController = UITabBarController()
+        tabBarController.viewControllers = [nowPlayingNavigationController, topRatedNavigationController]
+        
+        window?.rootViewController = tabBarController
+        window?.makeKeyAndVisible()
+        
+        customizeApperance()
+        
         return true
+    }
+    
+    func customizeApperance(){
+        //customize navigation bar
+        UINavigationBar.appearance().barTintColor = UIColor.darkGrayColor()
+        UINavigationBar.appearance().tintColor = UIColor.lightGrayColor()
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.lightGrayColor()]
+        
+        //customize the status bar
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
+        
+        //customize the tab bar
+        UITabBar.appearance().tintColor = UIColor.whiteColor()
+        UITabBar.appearance().barTintColor = UIColor.darkGrayColor()
     }
 
     func applicationWillResignActive(application: UIApplication) {
