@@ -30,7 +30,7 @@ class MovieDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = movie.title.capitalizedString
+        navigationItem.title = movie.title.capitalized
         
         
         //set up outlets
@@ -38,7 +38,7 @@ class MovieDetailViewController: UIViewController {
         overviewLabel.text = overview
         overviewLabel.sizeToFit()
         ratingLabel.text = String(format: "%.1f", movie.voteAverage)
-        titleLabel.text = movie.title.capitalizedString
+        titleLabel.text = movie.title.capitalized
         ratingIndicatorImageView.image = movie.voteAverage >= 5.0 ? UIImage(named: "banner_green") : UIImage(named: "banner_red")
         
         //
@@ -46,28 +46,28 @@ class MovieDetailViewController: UIViewController {
         movieInfoView.layer.cornerRadius = 10
         
         //load the low resolution image first then load the high resolution image when available
-        let highResolutionBaseUrl = "https://image.tmdb.org/t/p/original"
-        let highResPosterUrl = highResolutionBaseUrl + movie.posterPath
-        let highResImageRequest = NSURLRequest(URL: NSURL(string: highResPosterUrl)!)
-        
-        let lowResolutionBaseUrl = "https://image.tmdb.org/t/p/w45"
-        let lowResPosterUrl = lowResolutionBaseUrl + movie.posterPath
-        let lowResImageRequest = NSURLRequest(URL: NSURL(string: lowResPosterUrl)!)
-        
-        posterImageView.setImageWithURLRequest(lowResImageRequest, placeholderImage: nil, success: { (lowResImageRequest, lowResImageResponse, lowResImage) in
-            self.posterImageView.alpha = 0.0
-            self.posterImageView.image = lowResImage
-            UIView.animateWithDuration(0.3, animations: { _ -> Void in
-                self.posterImageView.alpha = 1.0
-            }, completion: { sucess in
-                self.posterImageView.setImageWithURLRequest(highResImageRequest, placeholderImage: lowResImage, success: { (highResImageRequest, highResImageResponse, highResImage) in
-                    self.posterImageView.image = highResImage
-                }, failure: { (request, response, image) in
-                    
-                })
-            })
-        }, failure: { (request, response, image) in
-        })
+//        let highResolutionBaseUrl = "https://image.tmdb.org/t/p/original"
+//        let highResPosterUrl = highResolutionBaseUrl + movie.posterPath
+//        let highResImageRequest = NSURLRequest(URL: NSURL(string: highResPosterUrl)!)
+//        
+//        let lowResolutionBaseUrl = "https://image.tmdb.org/t/p/w45"
+//        let lowResPosterUrl = lowResolutionBaseUrl + movie.posterPath
+//        let lowResImageRequest = NSURLRequest(URL: NSURL(string: lowResPosterUrl)!)
+//        
+//        posterImageView.setImageWithURLRequest(lowResImageRequest, placeholderImage: nil, success: { (lowResImageRequest, lowResImageResponse, lowResImage) in
+//            self.posterImageView.alpha = 0.0
+//            self.posterImageView.image = lowResImage
+//            UIView.animateWithDuration(0.3, animations: { _ -> Void in
+//                self.posterImageView.alpha = 1.0
+//            }, completion: { sucess in
+//                self.posterImageView.setImageWithURLRequest(highResImageRequest, placeholderImage: lowResImage, success: { (highResImageRequest, highResImageResponse, highResImage) in
+//                    self.posterImageView.image = highResImage
+//                }, failure: { (request, response, image) in
+//                    
+//                })
+//            })
+//        }, failure: { (request, response, image) in
+//        })
         
         //set up scrollable area for scrollView
         scrollView.contentSize = CGSize(width: view.bounds.size.width, height: movieInfoView.frame.origin.y + movieInfoView.frame.size.height + overviewLabel.frame.size.height + 20)
@@ -78,7 +78,7 @@ class MovieDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         navigationController?.hidesBarsOnSwipe = true

@@ -10,7 +10,7 @@ import UIKit
 import AFNetworking
 import QuartzCore
 
-class MovieListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
+class MovieListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
 //MARK: - Outlets and Variables
     var movies: [Movie] = []
@@ -40,7 +40,7 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
         super.viewDidLoad()
         
         navigationItem.title = navigationTitle
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         isLoading = true
         
@@ -51,8 +51,8 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
         collectionView.allowsMultipleSelection = false
         
         //display tableview/gridview based on last time
-        let defauls = NSUserDefaults.standardUserDefaults()
-        inTableView = defauls.boolForKey("switchView")
+        let defauls = UserDefaults.standard
+        inTableView = defauls.bool(forKey: "switchView")
         
         print(inTableView)
         let fromView = inTableView ? tableView : collectionView
@@ -62,61 +62,61 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
         
         //load nib
         var cellNib = UINib(nibName: CellIdentifiers.loadingCell, bundle: nil)
-        tableView.registerNib(cellNib, forCellReuseIdentifier: CellIdentifiers.loadingCell)
+        tableView.register(cellNib, forCellReuseIdentifier: CellIdentifiers.loadingCell)
         
         cellNib = UINib(nibName: CellIdentifiers.loadingGridCell, bundle: nil)
-        collectionView.registerNib(cellNib, forCellWithReuseIdentifier: CellIdentifiers.loadingGridCell)
+        collectionView.register(cellNib, forCellWithReuseIdentifier: CellIdentifiers.loadingGridCell)
         
         //create URL request
-        let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-        let url = NSURL(string: "https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(apiKey)")
-        let request = NSURLRequest(
-            URL: url!,
-            cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData,
-            timeoutInterval: 10)
-        
-        //configure session -> executed on main thread
-        let session = NSURLSession(
-            configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
-            delegate: nil,
-            delegateQueue: NSOperationQueue.mainQueue()
-        )
-        
-        let task: NSURLSessionDataTask = session.dataTaskWithRequest(request, completionHandler: { (dataOrNil, response, error) in
-            if let data = dataOrNil {
-                if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(data, options:[]) as? NSDictionary{
-                    //print("Response: \(responseDictionary)")
-                    let resultArray = responseDictionary["results"] as! [NSDictionary]
-                    
-                    for result in resultArray{
-                        let movie = Movie()
-                        movie.title = result["title"] as! String
-                        movie.posterPath = result["poster_path"] as! String
-                        movie.adult = result["adult"] as! Bool
-                        movie.overview = result["overview"] as! String
-                        movie.originalLanguge = result["original_language"] as! String
-                        movie.voteCount = result["vote_count"] as! Int
-                        movie.voteAverage = result["vote_average"] as! Double
-                        movie.releaseDate = result["release_date"] as! String
-                        
-                        self.movies.append(movie)
-                    }
-                    self.animate()
-                    self.isLoading = false
-                    self.tableView.reloadData()
-                    self.collectionView.reloadData()
-                }
-            } else {
-                self.showNetworkError()
-            }
-        })
-        task.resume()        
+//        let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
+//        let url = NSURL(string: "https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(apiKey)")
+//        let request = NSURLRequest(
+//            URL: url!,
+//            cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData,
+//            timeoutInterval: 10)
+//
+//        //configure session -> executed on main thread
+//        let session = NSURLSession(
+//            configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
+//            delegate: nil,
+//            delegateQueue: NSOperationQueue.mainQueue()
+//        )
+//
+//        let task: NSURLSessionDataTask = session.dataTaskWithRequest(request, completionHandler: { (dataOrNil, response, error) in
+//            if let data = dataOrNil {
+//                if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(data, options:[]) as? NSDictionary{
+//                    //print("Response: \(responseDictionary)")
+//                    let resultArray = responseDictionary["results"] as! [NSDictionary]
+//
+//                    for result in resultArray{
+//                        let movie = Movie()
+//                        movie.title = result["title"] as! String
+//                        movie.posterPath = result["poster_path"] as! String
+//                        movie.adult = result["adult"] as! Bool
+//                        movie.overview = result["overview"] as! String
+//                        movie.originalLanguge = result["original_language"] as! String
+//                        movie.voteCount = result["vote_count"] as! Int
+//                        movie.voteAverage = result["vote_average"] as! Double
+//                        movie.releaseDate = result["release_date"] as! String
+//
+//                        self.movies.append(movie)
+//                    }
+//                    self.animate()
+//                    self.isLoading = false
+//                    self.tableView.reloadData()
+//                    self.collectionView.reloadData()
+//                }
+//            } else {
+//                self.showNetworkError()
+//            }
+//        })
+//        task.resume()
         
         //apply pull to refresh to the tableview
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), forControlEvents: .ValueChanged)
-        tableView.insertSubview(refreshControl, atIndex: 0)
-        collectionView.insertSubview(refreshControl, atIndex: 0)
+        refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: .valueChanged)
+        tableView.insertSubview(refreshControl, at: 0)
+        collectionView.insertSubview(refreshControl, at: 0)
         
         //add search bar to navigation bar
         searchController = UISearchController(searchResultsController: nil)
@@ -124,8 +124,8 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search for movie name..."
         searchController.searchBar.prompt = "coderschool.vn"
-        searchController.searchBar.tintColor = UIColor.lightGrayColor()
-        searchController.searchBar.searchBarStyle = .Minimal
+        searchController.searchBar.tintColor = .lightGray
+        searchController.searchBar.searchBarStyle = .minimal
         
         self.navigationItem.titleView = searchController.searchBar
         self.definesPresentationContext = false
@@ -133,25 +133,25 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
         
         //customize buttons
         let switchButton = UIButton()
-        switchButton.setImage(UIImage(named: "grid"), forState: .Normal)
-        switchButton.frame = CGRectMake(0, 0, 40, 30)
+        switchButton.setImage(UIImage(named: "grid"), for: .normal)
+        switchButton.frame = CGRect(x: 0, y: 0, width: 40, height: 30)
         switchButton.layer.cornerRadius = 4
-        switchButton.layer.borderColor = UIColor.lightGrayColor().CGColor
+        switchButton.layer.borderColor =  UIColor.lightGray.cgColor
         switchButton.layer.borderWidth = 1.0
         switchButton.layer.masksToBounds = true
-        switchButton.layer.backgroundColor = UIColor.clearColor().CGColor
-        switchButton.addTarget(self, action: #selector(switchView(_:)), forControlEvents: .TouchUpInside)
+        switchButton.layer.backgroundColor = UIColor.clear.cgColor
+        switchButton.addTarget(self, action: #selector(switchView(_:)), for: .touchUpInside)
         switchViewButton.customView = switchButton
         
         //customize table view
         tableView.backgroundColor = UIColor(red: 51.0/255.0, green: 51.0/255.0, blue: 51.0/255.0, alpha: 1.0)
-        tableView.separatorColor = UIColor.darkGrayColor()
-        tableView.indicatorStyle = .White
+        tableView.separatorColor = .darkGray
+        tableView.indicatorStyle = .white
         
         //create splash animation
         //create mask
         self.mask = CALayer()
-        self.mask!.contents = UIImage(named: "bat")!.CGImage //twitter logo mask
+        self.mask!.contents = UIImage(named: "bat")!.cgImage //twitter logo mask
         self.mask!.contentsGravity = kCAGravityResizeAspect //allow image to fit within the layer bounds without distoring the ratio
         self.mask!.bounds = CGRect(x: 0, y: 0, width: 100, height: 100)
         self.mask!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
@@ -161,7 +161,7 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
         fromView.layer.mask = mask
         
         //twitter brand colors
-        self.view.backgroundColor = UIColor.lightGrayColor()
+        self.view.backgroundColor = .lightGray
         
         //animate()
     }
@@ -172,46 +172,46 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         //check if user uses app for the first time
-        let defaults = NSUserDefaults.standardUserDefaults()
-        let hasViewWalkthrough = defaults.boolForKey("hasViewWalkthrough")
+        let defaults = UserDefaults.standard
+        let hasViewWalkthrough = defaults.bool(forKey: "hasViewWalkthrough")
 
         if hasViewWalkthrough {
             return
         }
         
         //if firstTime, walk them thru
-        if let pageViewController = storyboard?.instantiateViewControllerWithIdentifier("WalkthroughController") as? WalkthroughPageViewController{
-            presentViewController(pageViewController, animated: true, completion: nil)
+        if let pageViewController = storyboard?.instantiateViewController(withIdentifier: "WalkthroughController") as? WalkthroughPageViewController{
+            present(pageViewController, animated: true, completion: nil)
         }
     }
     
 //MARK: - UITableViewDataSource, UITableViewDelegate
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isLoading{
             return 1
-        } else if searchController.active {
+        } else if searchController.isActive {
             return searchResults.count
         }
         return movies.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if isLoading{
-            let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifiers.loadingCell, forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.loadingCell, for: indexPath)
             let spiner = cell.viewWithTag(100) as! UIActivityIndicatorView
             spiner.startAnimating()
             return cell
         } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifiers.movieCell, forIndexPath: indexPath) as! MovieCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.movieCell, for: indexPath) as! MovieCell
         
-            let movie = searchController.active ? searchResults[indexPath.row] : movies[indexPath.row]
+            let movie = searchController.isActive ? searchResults[indexPath.row] : movies[indexPath.row]
 
-            cell.titleLabel.text = movie.title.capitalizedString
+            cell.titleLabel.text = movie.title.capitalized
             
             cell.voteCountLabel.text = "/" + "\(movie.voteCount)" + " votes"
             
@@ -219,37 +219,37 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
             if movie.voteAverage >= 5.0{
                 cell.ratingLabel.backgroundColor = UIColor(red: 164.0/255.0, green: 198.0/255.0, blue: 57.0/255.0, alpha: 1.0)
             } else{
-                cell.ratingLabel.backgroundColor = UIColor.redColor()
+                cell.ratingLabel.backgroundColor = UIColor.red
             }
             
             cell.dateLabel.text = movie.releaseDate
         
             //made the poster image fade in
-            let fullPosterUrl = baseUrl + movie.posterPath
-            let imageRequest = NSURLRequest(URL: NSURL(string: fullPosterUrl)!)
-            cell.posterImageView.setImageWithURLRequest(imageRequest, placeholderImage: nil, success: { (imageRequest, imageResponse, image) -> Void in
-                if imageResponse != nil{
-                    cell.posterImageView.alpha = 0.0
-                    cell.posterImageView.image = image
-                    UIView.animateWithDuration(0.3, animations: { _ -> Void in
-                        cell.posterImageView.alpha = 1.0
-                    })
-                } else{
-                    cell.posterImageView.image = image
-                }
-                }, failure: { (imageRequest, imageResponse, image) -> Void in
-                    
-            })
+//            let fullPosterUrl = baseUrl + movie.posterPath
+//            let imageRequest = NSURLRequest(URL: NSURL(string: fullPosterUrl)!)
+//            cell.posterImageView.setImageWithURLRequest(imageRequest, placeholderImage: nil, success: { (imageRequest, imageResponse, image) -> Void in
+//                if imageResponse != nil{
+//                    cell.posterImageView.alpha = 0.0
+//                    cell.posterImageView.image = image
+//                    UIView.animateWithDuration(0.3, animations: { _ -> Void in
+//                        cell.posterImageView.alpha = 1.0
+//                    })
+//                } else{
+//                    cell.posterImageView.image = image
+//                }
+//                }, failure: { (imageRequest, imageResponse, image) -> Void in
+//                    
+//            })
             
             return cell
         }
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         if isLoading{
             return nil
         }
@@ -257,7 +257,7 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
         return indexPath
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         if isLoading{
             return 568
         }
@@ -265,21 +265,21 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     // MARK: - Navigation
-
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "MovieDetailFromRow"{
-            let controller = segue.destinationViewController as! MovieDetailViewController
-        
+            let controller = segue.destination as! MovieDetailViewController
+            
             if let indexPath = tableView.indexPathForSelectedRow{
-                controller.movie = searchController.active ? searchResults[indexPath.row] : movies[indexPath.row]
+                controller.movie = searchController.isActive ? searchResults[indexPath.row] : movies[indexPath.row]
                 controller.hidesBottomBarWhenPushed = true
             }
         } else if segue.identifier == "MovieDetailFromGrid"{
-            let controller = segue.destinationViewController as! MovieDetailViewController
+            let controller = segue.destination as! MovieDetailViewController
             
-            if let indexPaths = collectionView.indexPathsForSelectedItems(){
-                if let indexPath = indexPaths.first{
-                    controller.movie = searchController.active ? searchResults[indexPath.row] : movies[indexPath.row]
+            if let indexPaths = collectionView.indexPathsForSelectedItems {
+                if let indexPath = indexPaths.first {
+                    controller.movie = searchController.isActive ? searchResults[indexPath.row] : movies[indexPath.row]
                     controller.hidesBottomBarWhenPushed = true
                 }
             }
@@ -288,19 +288,19 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
     
     // MARK: - Actions
     
-    func switchView(sender: UIBarButtonItem){
+    @objc func switchView(_ sender: UIBarButtonItem){
         let fromView = inTableView ? tableView : collectionView
         let toView = inTableView ? collectionView : tableView
         self.switchViewButton.image = inTableView ? UIImage(named: "grid") : UIImage(named: "table")
         
-        UIView.animateWithDuration(0.5, animations: { _ in
+        UIView.animate(withDuration: 0.5, animations: {
             fromView.alpha = 0
             toView.alpha = 1
             }, completion: { _ in
                 self.inTableView = !self.inTableView
                 print(self.inTableView)
-                let defaults = NSUserDefaults.standardUserDefaults()
-                defaults.setBool(self.inTableView, forKey: "switchView")
+                let defaults = UserDefaults.standard
+                defaults.set(self.inTableView, forKey: "switchView")
         })
     }
     
@@ -314,64 +314,64 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
     
     //present this func when there is an netwrk error while loading tableview
     func showNetworkError(){
-        let alert = UIAlertController(title: "Whoops", message: "Network Error. Plese check your network connection", preferredStyle: .Alert)
-        let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+        let alert = UIAlertController(title: "Whoops", message: "Network Error. Plese check your network connection", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
         alert.addAction(action)
-        presentViewController(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
     
     //
-    func refreshControlAction(refreshControl: UIRefreshControl){
+    @objc func refreshControlAction(_ refreshControl: UIRefreshControl) {
         //create URL request
-        let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-        let url = NSURL(string: "https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(apiKey)")
-        let request = NSURLRequest(
-            URL: url!,
-            cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData,
-            timeoutInterval: 10)
-        
-        //configure session -> executed on main thread
-        let session = NSURLSession(
-            configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
-            delegate: nil,
-            delegateQueue: NSOperationQueue.mainQueue()
-        )
-        
-        let task: NSURLSessionDataTask = session.dataTaskWithRequest(request, completionHandler: { (dataOrNil, response, error) in
-            if let data = dataOrNil {
-                if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(data, options:[]) as? NSDictionary{
-                    let resultArray = responseDictionary["results"] as! [NSDictionary]
-                    
-                    for result in resultArray{
-                        let movie = Movie()
-                        movie.title = result["title"] as! String
-                        movie.posterPath = result["poster_path"] as! String
-                        movie.adult = result["adult"] as! Bool
-                        movie.overview = result["overview"] as! String
-                        movie.originalLanguge = result["original_language"] as! String
-                        movie.voteCount = result["vote_count"] as! Int
-                        movie.voteAverage = result["vote_average"] as! Double
-                        movie.releaseDate = result["release_date"] as! String
-                        
-                        self.movies.append(movie)
-                    }
-
-                    self.tableView.reloadData()
-                    self.collectionView.reloadData()
-                    refreshControl.endRefreshing()
-                }
-            } else {
-                self.showNetworkError()
-                refreshControl.endRefreshing()
-            }
-        })
-        task.resume()
+//        let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
+//        let url = NSURL(string: "https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(apiKey)")
+//        let request = NSURLRequest(
+//            URL: url!,
+//            cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData,
+//            timeoutInterval: 10)
+//
+//        //configure session -> executed on main thread
+//        let session = NSURLSession(
+//            configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
+//            delegate: nil,
+//            delegateQueue: NSOperationQueue.mainQueue()
+//        )
+//
+//        let task: NSURLSessionDataTask = session.dataTaskWithRequest(request, completionHandler: { (dataOrNil, response, error) in
+//            if let data = dataOrNil {
+//                if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(data, options:[]) as? NSDictionary{
+//                    let resultArray = responseDictionary["results"] as! [NSDictionary]
+//
+//                    for result in resultArray{
+//                        let movie = Movie()
+//                        movie.title = result["title"] as! String
+//                        movie.posterPath = result["poster_path"] as! String
+//                        movie.adult = result["adult"] as! Bool
+//                        movie.overview = result["overview"] as! String
+//                        movie.originalLanguge = result["original_language"] as! String
+//                        movie.voteCount = result["vote_count"] as! Int
+//                        movie.voteAverage = result["vote_average"] as! Double
+//                        movie.releaseDate = result["release_date"] as! String
+//
+//                        self.movies.append(movie)
+//                    }
+//
+//                    self.tableView.reloadData()
+//                    self.collectionView.reloadData()
+//                    refreshControl.endRefreshing()
+//                }
+//            } else {
+//                self.showNetworkError()
+//                refreshControl.endRefreshing()
+//            }
+//        })
+//        task.resume()
     }
     
     //create an array which store all the searched movies
     func searchMovie(searchText: String){
         searchResults = movies.filter({ (movie: Movie) -> Bool in
-            let nameMatch = movie.title.rangeOfString(searchText, options: .CaseInsensitiveSearch)
+            let nameMatch = movie.title.rangeOfCharacter(from: CharacterSet(charactersIn: searchText), options: .caseInsensitive, range: nil)
             return (nameMatch != nil)
         })
     }
@@ -381,35 +381,34 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
         
         let keyFrameAnimation = CAKeyframeAnimation(keyPath: "bounds")
         keyFrameAnimation.delegate = self
-        keyFrameAnimation.duration = 0.5
-        keyFrameAnimation.beginTime = CACurrentMediaTime() + 1 //add delay of 1 second
-        
-        //start animation
-        let initialBounds = NSValue(CGRect: mask!.bounds)
-        
-        
-        //bounce/zooming effect
-        let middleBounds = NSValue(CGRect: CGRect(x: 0, y: 0, width: 90, height: 90))
-        let finalBounds = NSValue(CGRect: CGRect(x: 0, y: 0, width: 2000, height: 2000))
-        
-        //add NSValues and keytimes
-        keyFrameAnimation.values = [initialBounds, middleBounds, finalBounds]
-        keyFrameAnimation.keyTimes = [0.0, 0.3, 1]
-        
-        
-        //animation timing functions
-        keyFrameAnimation.timingFunctions = [CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut), CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)]
-        
-        //add animation
-        self.mask?.addAnimation(keyFrameAnimation, forKey: "bounds")
-        
-        
+//        keyFrameAnimation.duration = 0.5
+//        keyFrameAnimation.beginTime = CACurrentMediaTime() + 1 //add delay of 1 second
+//
+//        //start animation
+//        let initialBounds = NSValue(CGRect: mask!.bounds)
+//
+//        //bounce/zooming effect
+//        let middleBounds = NSValue(CGRect: CGRect(x: 0, y: 0, width: 90, height: 90))
+//        let finalBounds = NSValue(CGRect: CGRect(x: 0, y: 0, width: 2000, height: 2000))
+//
+//        //add NSValues and keytimes
+//        keyFrameAnimation.values = [initialBounds, middleBounds, finalBounds]
+//        keyFrameAnimation.keyTimes = [0.0, 0.3, 1]
+//
+//
+//        //animation timing functions
+//        keyFrameAnimation.timingFunctions = [CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut), CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)]
+//
+//        //add animation
+//        self.mask?.add(keyFrameAnimation, forKey: "bounds")
     }
-    
-    override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
+}
+
+extension MovieListViewController: CAAnimationDelegate {
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         //removes mask when animation completes
-        let defauls = NSUserDefaults.standardUserDefaults()
-        inTableView = defauls.boolForKey("switchView")
+        let defauls = UserDefaults.standard
+        inTableView = defauls.bool(forKey: "switchView")
         let fromView = inTableView ? tableView : collectionView
         
         fromView.layer.mask = nil
@@ -419,9 +418,9 @@ class MovieListViewController: UIViewController, UITableViewDataSource, UITableV
 
 //MARK: - EXTENSION: UISearchResultsUpdating
 extension MovieListViewController: UISearchResultsUpdating{
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
+    func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text{
-            searchMovie(searchText)
+            searchMovie(searchText: searchText)
             tableView.reloadData()
             collectionView.reloadData()
         }
@@ -430,44 +429,44 @@ extension MovieListViewController: UISearchResultsUpdating{
 
 //MARK: - EXTENSION: UICollectionViewDataSource, UICollectionViewDelegate
 
-extension MovieListViewController: UICollectionViewDataSource, UICollectionViewDelegate{
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+extension MovieListViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if isLoading{
             return 1
-        } else if searchController.active {
+        } else if searchController.isActive {
             return searchResults.count
         }
         
         return movies.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if isLoading{
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CellIdentifiers.loadingGridCell, forIndexPath: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellIdentifiers.loadingGridCell, for: indexPath)
             let spiner = cell.viewWithTag(101) as! UIActivityIndicatorView
             spiner.startAnimating()
             return cell
         } else{
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CellIdentifiers.movieGridCell, forIndexPath: indexPath) as! MovieGridCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellIdentifiers.movieGridCell, for: indexPath) as! MovieGridCell
         
-            let movie = searchController.active ? searchResults[indexPath.row] : movies[indexPath.row]
+            let movie = searchController.isActive ? searchResults[indexPath.row] : movies[indexPath.row]
         
-            cell.titleLabel.text = movie.title.capitalizedString
+            cell.titleLabel.text = movie.title.capitalized
         
             //made the poster image fade in
-            let fullPosterUrl = baseUrl + movie.posterPath
-            let imageRequest = NSURLRequest(URL: NSURL(string: fullPosterUrl)!)
-            cell.posterImageView.setImageWithURLRequest(imageRequest, placeholderImage: nil, success: { (imageRequest, imageResponse, image) -> Void in
-                if imageResponse != nil{
-                    cell.posterImageView.alpha = 0.0
-                    cell.posterImageView.image = image
-                    UIView.animateWithDuration(0.3, animations: { _ -> Void in
-                        cell.posterImageView.alpha = 1.0
-                    })
-                } else{
-                    cell.posterImageView.image = image
-                }
-            }, failure: { (imageRequest, imageResponse, image) -> Void in})
+//            let fullPosterUrl = baseUrl + movie.posterPath
+//            let imageRequest = NSURLRequest(URL: NSURL(string: fullPosterUrl)!)
+//            cell.posterImageView.setImageWithURLRequest(imageRequest, placeholderImage: nil, success: { (imageRequest, imageResponse, image) -> Void in
+//                if imageResponse != nil{
+//                    cell.posterImageView.alpha = 0.0
+//                    cell.posterImageView.image = image
+//                    UIView.animateWithDuration(0.3, animations: { _ -> Void in
+//                        cell.posterImageView.alpha = 1.0
+//                    })
+//                } else{
+//                    cell.posterImageView.image = image
+//                }
+//            }, failure: { (imageRequest, imageResponse, image) -> Void in})
 
         return cell
         }
