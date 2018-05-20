@@ -30,7 +30,7 @@ class MovieDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = movie.title.capitalized
+        navigationItem.title = movie.title?.capitalized
         
         
         //set up outlets
@@ -38,7 +38,7 @@ class MovieDetailViewController: UIViewController {
         overviewLabel.text = overview
         overviewLabel.sizeToFit()
         ratingLabel.text = String(format: "%.1f", movie.voteAverage)
-        titleLabel.text = movie.title.capitalized
+        titleLabel.text = movie.title?.capitalized
         ratingIndicatorImageView.image = movie.voteAverage >= 5.0 ? UIImage(named: "banner_green") : UIImage(named: "banner_red")
         
         //
