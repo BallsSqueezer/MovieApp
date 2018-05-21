@@ -17,8 +17,6 @@
 		21F3FD1320B0B07300F1C198 /* UIColor+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F3FD1220B0B07300F1C198 /* UIColor+Init.swift */; };
 		21F3FD1620B0BE4B00F1C198 /* NetworkSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F3FD1520B0BE4B00F1C198 /* NetworkSession.swift */; };
 		21F3FD1820B0BF1600F1C198 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F3FD1720B0BF1600F1C198 /* NetworkResult.swift */; };
-		21F3FD1B20B0C51200F1C198 /* EndpointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F3FD1A20B0C51200F1C198 /* EndpointType.swift */; };
-		21F3FD1E20B0C63A00F1C198 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F3FD1D20B0C63A00F1C198 /* HTTPMethod.swift */; };
 		21F79B401D2CBAAB00516D8A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F79B3F1D2CBAAB00516D8A /* AppDelegate.swift */; };
 		21F79B451D2CBAAB00516D8A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21F79B431D2CBAAB00516D8A /* Main.storyboard */; };
 		21F79B471D2CBAAB00516D8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21F79B461D2CBAAB00516D8A /* Assets.xcassets */; };
@@ -40,8 +38,6 @@
 		21F3FD1220B0B07300F1C198 /* UIColor+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Init.swift"; sourceTree = "<group>"; };
 		21F3FD1520B0BE4B00F1C198 /* NetworkSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSession.swift; sourceTree = "<group>"; };
 		21F3FD1720B0BF1600F1C198 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
-		21F3FD1A20B0C51200F1C198 /* EndpointType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointType.swift; sourceTree = "<group>"; };
-		21F3FD1D20B0C63A00F1C198 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		21F79B3C1D2CBAAB00516D8A /* MovieRating.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieRating.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21F79B3F1D2CBAAB00516D8A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		21F79B441D2CBAAB00516D8A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -125,29 +121,11 @@
 		21F3FD1420B0BE2C00F1C198 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				21F3FD1C20B0C5D900F1C198 /* Services */,
-				21F3FD1920B0C4DB00F1C198 /* Endpoints */,
 				21F3FD0E20B0AB1200F1C198 /* NetworkManager.swift */,
 				21F3FD1520B0BE4B00F1C198 /* NetworkSession.swift */,
 				21F3FD1720B0BF1600F1C198 /* NetworkResult.swift */,
 			);
 			path = Networking;
-			sourceTree = "<group>";
-		};
-		21F3FD1920B0C4DB00F1C198 /* Endpoints */ = {
-			isa = PBXGroup;
-			children = (
-				21F3FD1A20B0C51200F1C198 /* EndpointType.swift */,
-			);
-			path = Endpoints;
-			sourceTree = "<group>";
-		};
-		21F3FD1C20B0C5D900F1C198 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				21F3FD1D20B0C63A00F1C198 /* HTTPMethod.swift */,
-			);
-			path = Services;
 			sourceTree = "<group>";
 		};
 		21F3FD1F20B0E33400F1C198 /* Walkthrough */ = {
@@ -339,7 +317,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21F3FD1B20B0C51200F1C198 /* EndpointType.swift in Sources */,
 				21F3FD0F20B0AB1200F1C198 /* NetworkManager.swift in Sources */,
 				21F942761D2EBFDC005D30F3 /* MovieDetailViewController.swift in Sources */,
 				21F79B401D2CBAAB00516D8A /* AppDelegate.swift in Sources */,
@@ -347,7 +324,6 @@
 				21C7BF351D324FF2007699E8 /* WalkthroughContentViewController.swift in Sources */,
 				2161D23A20B2405000F6818B /* TypeAlias.swift in Sources */,
 				21F3FD1820B0BF1600F1C198 /* NetworkResult.swift in Sources */,
-				21F3FD1E20B0C63A00F1C198 /* HTTPMethod.swift in Sources */,
 				21F3FD1120B0ACC000F1C198 /* UITableView&UICollectionView+Reusable.swift in Sources */,
 				21F3FD1320B0B07300F1C198 /* UIColor+Init.swift in Sources */,
 				2161D23020B0F70C00F6818B /* MovieListViewModel.swift in Sources */,
