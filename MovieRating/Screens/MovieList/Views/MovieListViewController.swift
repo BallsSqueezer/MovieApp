@@ -70,9 +70,6 @@ final class MovieListViewController: UIViewController, UITableViewDataSource, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        navigationItem.title = "Movie Rating"
-//        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        
         navigationItem.titleView = searchController.searchBar
         
         view = tableView
@@ -156,25 +153,6 @@ final class MovieListViewController: UIViewController, UITableViewDataSource, UI
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
-//    override func prepare(for_  segue: UIStoryboardSeguheightForRowAt    if segue.identifier == "MovieDetailFromRow"{
-//            let controller = segue.destination as! MovieDetailViewController
-//
-//            if let indexPath = tableView.indexPathForSelectedRow{
-//                controller.movie = searchController.isActive ? searchResults[indexPath.row] : movies[indexPath.row]
-//                controller.hidesBottomBarWhenPushed = true
-//            }
-//        } else if segue.identifier == "MovieDetailFromGrid"{
-//            let controller = segue.destination as! MovieDetailViewController
-//
-//            if let indexPaths = collectionView.indexPathsForSelectedItems {
-//                if let indexPath = indexPaths.first {
-//                    controller.movie = searchController.isActive ? searchResults[indexPath.row] : movies[indexPath.row]
-//                    controller.hidesBottomBarWhenPushed = true
-//                }
-//            }
-//        }
-//    }
     
     private func showNetworkError(){
         let alert = UIAlertController(title: "Whoops", message: "Network Error. Plese check your network connection", preferredStyle: .alert)
