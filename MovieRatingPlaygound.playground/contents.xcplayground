@@ -3,5 +3,6 @@
     <pages>
         <page name='MovieListViewControllerPlayground'/>
         <page name='Untitled Page'/>
+        <page name='TODO'/>
     </pages>
 </playground>
