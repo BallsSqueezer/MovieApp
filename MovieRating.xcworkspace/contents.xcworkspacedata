@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:MovieRatingPlaygound.playground">
+   </FileRef>
+   <FileRef
       location = "group:MovieRating.xcodeproj">
    </FileRef>
    <FileRef
