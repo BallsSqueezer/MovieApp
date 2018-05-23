@@ -8,9 +8,8 @@
 
 import UIKit
 import AFNetworking
-import QuartzCore
 
-final class MovieListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+final public class MovieListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     private let networkManager = NetworkManager()
     
@@ -58,16 +57,16 @@ final class MovieListViewController: UIViewController, UITableViewDataSource, UI
         return control
     }()
     
-    init() {
+    public init() {
         super.init(nibName: nil, bundle: nil)
         viewModel.delegate = self
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.titleView = searchController.searchBar
@@ -83,29 +82,16 @@ final class MovieListViewController: UIViewController, UITableViewDataSource, UI
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        //check if user uses app for the first time
-//        let defaults = UserDefaults.standard
-//        let hasViewWalkthrough = defaults.bool(forKey: "hasViewWalkthrough")
-
-//        if hasViewWalkthrough {
-//            return
-//        }
-//
-//        //if firstTime, walk them thru
-//        if let pageViewController = storyboard?.instantiateViewController(withIdentifier: "WalkthroughController") as? WalkthroughPageViewController{
-//            present(pageViewController, animated: true, completion: nil)
-//        }
     }
     
 //MARK: - UITableViewDataSource, UITableViewDelegate
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfItems()
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let movie = viewModel.item(at: indexPath)
         
@@ -115,9 +101,9 @@ final class MovieListViewController: UIViewController, UITableViewDataSource, UI
         cell.voteCountLabel.text = "\(movie.voteCount)" + " votes"
         cell.ratingLabel.text = String(format: "%.1f", movie.voteAverage)
         if movie.voteAverage >= 5.0{
-            cell.ratingLabel.backgroundColor = UIColor(red: 164.0/255.0, green: 198.0/255.0, blue: 57.0/255.0, alpha: 1.0)
+            cell.ratingLabel.backgroundColor = UIColor(r: 164, g: 198, b: 57, a: 1)
         } else{
-            cell.ratingLabel.backgroundColor = UIColor.red
+            cell.ratingLabel.backgroundColor = .red
         }
 
         cell.dateLabel.text = movie.releaseDate
@@ -150,7 +136,7 @@ final class MovieListViewController: UIViewController, UITableViewDataSource, UI
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -184,17 +170,17 @@ extension MovieListViewController: MovieListViewModelDelegate {
 }
 
 extension MovieListViewController: UISearchControllerDelegate {
-    func willPresentSearchController(_ searchController: UISearchController) {
+    public func willPresentSearchController(_ searchController: UISearchController) {
         viewModel.activateSearch()
     }
     
-    func willDismissSearchController(_ searchController: UISearchController) {
+    public func willDismissSearchController(_ searchController: UISearchController) {
         viewModel.resetSearchList()
     }
 }
 
 extension MovieListViewController: UISearchResultsUpdating{
-    func updateSearchResults(for searchController: UISearchController) {
+    public func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text {
             viewModel.searchTitle(searchText)
         }
