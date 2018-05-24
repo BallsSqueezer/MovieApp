@@ -2,7 +2,7 @@
 <playground version='6.0' target-platform='ios'>
     <pages>
         <page name='MovieListViewControllerPlayground'/>
-        <page name='Untitled Page'/>
+        <page name='MovieDetailViewControllerPlayground'/>
         <page name='TODO'/>
     </pages>
 </playground>

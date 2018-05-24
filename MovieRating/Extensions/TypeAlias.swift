@@ -6,4 +6,4 @@
 //  Copyright © 2018 Hien Tran. All rights reserved.
 //
 
-typealias JSON = [String: AnyObject]
+public typealias JSON = [String: AnyObject]

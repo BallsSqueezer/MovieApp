@@ -9,7 +9,7 @@
 import UIKit
 import AFNetworking
 
-final public class MovieListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+final public class MovieListViewController: UIViewController {
     
     private let networkManager = NetworkManager()
     
@@ -86,7 +86,29 @@ final public class MovieListViewController: UIViewController, UITableViewDataSou
         super.viewDidAppear(animated)
     }
     
+    private func showNetworkError(){
+        let alert = UIAlertController(title: "Whoops", message: "Network Error. Plese check your network connection", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    @objc private func refreshControlAction(_ refreshControl: UIRefreshControl) {
+        networkManager.requestMovieList { [weak self] movies in
+            DispatchQueue.main.async {
+                self?.refreshControl.endRefreshing()
+                if movies.count > 0 {
+                    self?.viewModel.updateMovieList(movies)
+                } else {
+                    self?.showNetworkError()
+                }
+            }
+        }
+    }
+}
+
 //MARK: - UITableViewDataSource, UITableViewDelegate
+extension MovieListViewController: UITableViewDataSource, UITableViewDelegate {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfItems()
     }
@@ -137,30 +159,17 @@ final public class MovieListViewController: UIViewController, UITableViewDataSou
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let movie = viewModel.item(at: indexPath)
+        let movieDetailViewController = MovieDetailViewController()
+        movieDetailViewController.movie = movie
+        
+        self.navigationController?.pushViewController(movieDetailViewController, animated: true)
+        
         tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    private func showNetworkError(){
-        let alert = UIAlertController(title: "Whoops", message: "Network Error. Plese check your network connection", preferredStyle: .alert)
-        let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
-        alert.addAction(action)
-        present(alert, animated: true, completion: nil)
-    }
-    
-    @objc private func refreshControlAction(_ refreshControl: UIRefreshControl) {
-        networkManager.requestMovieList { [weak self] movies in
-            DispatchQueue.main.async {
-                self?.refreshControl.endRefreshing()
-                if movies.count > 0 {
-                    self?.viewModel.updateMovieList(movies)
-                } else {
-                    self?.showNetworkError()
-                }
-            }
-        }
     }
 }
 
+//MARK: - ViewModel Delegate
 extension MovieListViewController: MovieListViewModelDelegate {
     func modelDidChange() {
         DispatchQueue.main.async {
@@ -169,6 +178,7 @@ extension MovieListViewController: MovieListViewModelDelegate {
     }
 }
 
+//MARK: Search Delegate
 extension MovieListViewController: UISearchControllerDelegate {
     public func willPresentSearchController(_ searchController: UISearchController) {
         viewModel.activateSearch()

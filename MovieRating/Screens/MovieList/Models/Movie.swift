@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Movie: Codable {
+public struct Movie: Codable {
     let title: String?
     let posterPath: String?
     let adult: Bool
@@ -17,7 +17,7 @@ struct Movie: Codable {
     let voteAverage: Double
     let releaseDate: String?
     
-    init(json: JSON) {
+    public init(json: JSON) {
         self.title = json["title"] as? String
         self.posterPath = json["poster_path"] as? String
         self.adult = json["adult"] as? Bool ?? false
@@ -25,5 +25,22 @@ struct Movie: Codable {
         self.voteCount = json["vote_count"] as? Int ?? 0
         self.voteAverage = json["vote_average"] as? Double ?? 0.0
         self.releaseDate = json["release_date"] as? String
+    }
+    
+    public init(title: String?,
+         posterPath: String?,
+         adult: Bool = false,
+         overview: String?,
+         voteCount: Int = 0,
+         voteAverage: Double = 0.0,
+         releaseDate: String?)
+    {
+        self.title = title
+        self.posterPath = posterPath
+        self.adult = adult
+        self.overview = overview
+        self.voteCount = voteCount
+        self.voteAverage = voteAverage
+        self.releaseDate = releaseDate
     }
 }
