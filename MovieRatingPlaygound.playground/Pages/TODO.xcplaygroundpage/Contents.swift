@@ -1,7 +1,7 @@
 //: [Previous](@previous)
 
 /*
+ [ ] Remove in dex from WalkthroughContent
  [ ] Mockup server
- [ ] Walkthrough
  [ ] Screen Size
 */
