@@ -12,6 +12,23 @@ public class WalkthroughPageViewController: UIPageViewController {
     
     private(set) var viewModel: WalkthroughViewModel
     
+    private lazy var pageControl: UIPageControl = {
+        let control = UIPageControl()
+        control.translatesAutoresizingMaskIntoConstraints = false
+        control.isUserInteractionEnabled = false
+        control.pageIndicatorTintColor = UIColor(r: 170, g: 170, b: 170, a: 1)
+        control.currentPageIndicatorTintColor = UIColor(r: 85, g: 85, b: 85, a: 85)
+        return control
+    }()
+    
+    private lazy var nextButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitleColor(UIColor(r: 170, g: 170, b: 170, a: 1), for: .normal)
+        button.addTarget(self, action: #selector(nextButtonTapped(sender:)), for: .touchUpInside)
+        return button
+    }()
+    
     public init(
         viewModel: WalkthroughViewModel,
         transitionStyle: UIPageViewControllerTransitionStyle,
@@ -40,6 +57,11 @@ public class WalkthroughPageViewController: UIPageViewController {
         dataSource = self
         delegate = self
         
+        pageControl.numberOfPages = viewModel.numberOfItems
+        
+        updateControl()
+        addSubviews()
+        
         if let startingViewController = viewController(at: viewModel.currentIndex) {
             setViewControllers([startingViewController], direction: .forward, animated: true, completion: nil)
         }
@@ -59,13 +81,45 @@ public class WalkthroughPageViewController: UIPageViewController {
         return walkthroughContentViewController
     }
     
-//    func goNext(index: Int){
-//        if let nextViewController = viewControllerAtIndex(index: index + 1) {
-//            setViewControllers([nextViewController], direction: .forward, animated: true, completion: nil)
-//        }
-//    }
+    private func addSubviews() {
+        view.addSubview(pageControl)
+        view.addSubview(nextButton)
+        
+        NSLayoutConstraint.activate([
+            pageControl.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30),
+            pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            nextButton.centerYAnchor.constraint(equalTo: pageControl.centerYAnchor),
+            nextButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20)
+        ])
+    }
     
-    var currentIndex = 0
+    private func updateControl() {
+        pageControl.currentPage = viewModel.currentIndex
+        
+        let title = viewModel.isInLastIndex
+            ? "DONE"
+            : "NEXT"
+        nextButton.setTitle(title, for: .normal)
+    }
+    
+    @objc private func nextButtonTapped(sender: UIButton) {
+        if viewModel.isInLastIndex {
+            dismiss(animated: true) {
+                UserDefaults.standard.set(true, forKey: UserDefault.Walkthrough.didWatchWalkthrough)
+            }
+        } else {
+            let nextIndex = viewModel.currentIndex + 1
+            guard let nextWalkthroughViewController = viewController(at: nextIndex) else { return }
+            setViewControllers([nextWalkthroughViewController],
+                               direction: .forward,
+                               animated: true,
+                               completion: nil)
+            
+            viewModel.setCurrentIndex(to: nextIndex)
+            updateControl()
+        }
+    }
 }
 
 extension WalkthroughPageViewController: UIPageViewControllerDataSource {
@@ -95,9 +149,7 @@ extension WalkthroughPageViewController: UIPageViewControllerDelegate {
         //This is to handle the case when sometime user just swipes half way through and the page view controller doesn't actually transition to the next/previous page but bounces back the the current page
         //Check if the transition has completed. If YES, update the page controller. If NO, reverse the current index value that was set in pageViewController(_:willTransitionTo:) to its old value
         if completed {
-            //Handle Page controller
-//            guard let item = walkthroughItems[safe: currentIndex] else { return }
-//                updatePageController(with: item)
+            updateControl()
         } else {
             guard
                 let viewController = previousViewControllers.first as? WalkthroughContentViewController,

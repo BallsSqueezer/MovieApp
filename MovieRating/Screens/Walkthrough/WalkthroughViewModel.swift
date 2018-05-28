@@ -33,6 +33,10 @@ public struct WalkthroughViewModel {
         return walkthroughContents.count
     }
     
+    var isInLastIndex: Bool {
+        return currentIndex == numberOfItems - 1
+    }
+    
     public init() {}
     
     func content(at index: Int) -> WalkthroughContent {
