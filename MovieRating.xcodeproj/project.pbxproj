@@ -258,12 +258,36 @@
 		21F3FD1F20B0E33400F1C198 /* Walkthrough */ = {
 			isa = PBXGroup;
 			children = (
-				2151EE9820B7194E00FB6C3E /* WalkthroughContent.swift */,
-				21C7BF341D324FF2007699E8 /* WalkthroughContentViewController.swift */,
-				21C7BF361D32518E007699E8 /* WalkthroughPageViewController.swift */,
-				2151EE9B20B71D0E00FB6C3E /* WalkthroughViewModel.swift */,
+				21F534B320BDDA6A00BABE73 /* ViewModels */,
+				21F534B420BDDA8200BABE73 /* Models */,
+				21F534B520BDDA8D00BABE73 /* Views */,
 			);
 			path = Walkthrough;
+			sourceTree = "<group>";
+		};
+		21F534B320BDDA6A00BABE73 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				2151EE9B20B71D0E00FB6C3E /* WalkthroughViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		21F534B420BDDA8200BABE73 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2151EE9820B7194E00FB6C3E /* WalkthroughContent.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		21F534B520BDDA8D00BABE73 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				21C7BF361D32518E007699E8 /* WalkthroughPageViewController.swift */,
+				21C7BF341D324FF2007699E8 /* WalkthroughContentViewController.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		21F79B331D2CBAAB00516D8A = {

@@ -48,8 +48,10 @@ public class WalkthroughContentViewController: UIViewController {
         }
     }
     
+    private var _index: Int?
+    
     var index: Int? {
-        return walkthroughContent?.index
+        return _index
     }
     
     public init() {
@@ -60,13 +62,16 @@ public class WalkthroughContentViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-
     override public func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .white
         
         addSubviews()
+    }
+    
+    func setIndex(_ index: Int) {
+        _index = index
     }
     
     private func addSubviews() {

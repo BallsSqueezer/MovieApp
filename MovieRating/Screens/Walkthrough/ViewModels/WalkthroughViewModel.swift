@@ -9,16 +9,13 @@
 public struct WalkthroughViewModel {
     
     private let walkthroughContents = [
-        WalkthroughContent(index: 0,
-                           heading: "Personalize",
+        WalkthroughContent(heading: "Personalize",
                            imageFile: "walkthru1",
                            content: "We have everything that suits your style"),
-        WalkthroughContent(index: 1,
-                           heading: "Discover",
+        WalkthroughContent(heading: "Discover",
                            imageFile: "walkthru4",
                            content: "Searching for your favourite movies can't never be easier"),
-        WalkthroughContent(index: 2,
-                           heading: "Enjoyable",
+        WalkthroughContent(heading: "Enjoyable",
                            imageFile: "walkthru5",
                            content: "Enjoy you favourite movies with friends and family")
     ]

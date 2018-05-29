@@ -76,6 +76,7 @@ public class WalkthroughPageViewController: UIPageViewController {
         
         let content = viewModel.content(at: index)
         let walkthroughContentViewController = WalkthroughContentViewController()
+        walkthroughContentViewController.setIndex(index)
         walkthroughContentViewController.walkthroughContent = content
             
         return walkthroughContentViewController
