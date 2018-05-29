@@ -19,6 +19,9 @@ let mockupFailureNetworkSession = NetworkSessionMock(networkResult: NetworkResul
 // Let's start testing
 let networkManager = NetworkManager(session: mockupSuccessNetworkSession)
 let viewController = MovieListViewController(networkManager: networkManager)
-viewController.view.frame.size = CGSize(width: 375, height: 667)
 
-PlaygroundPage.current.liveView = viewController.view
+let (parrentVC, _) = traitControllers(device: .pad,
+                                      orientation: .portrait,
+                                      child: viewController)
+
+PlaygroundPage.current.liveView = parrentVC.view

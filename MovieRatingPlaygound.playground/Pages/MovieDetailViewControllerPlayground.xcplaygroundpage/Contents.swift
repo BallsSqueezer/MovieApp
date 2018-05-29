@@ -14,6 +14,9 @@ let movie = Movie(json: mockupJSON)
 
 let movieDetailViewController = MovieDetailViewController()
 movieDetailViewController.movie = movie
-movieDetailViewController.view.frame.size = CGSize(width: 375, height: 667)
 
-PlaygroundPage.current.liveView = movieDetailViewController.view
+let (parentVC, _) = traitControllers(device: .phone5_5inch,
+                                     orientation: .portrait,
+                                     child: movieDetailViewController)
+
+PlaygroundPage.current.liveView = parentVC.view

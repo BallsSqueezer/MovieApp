@@ -18,8 +18,11 @@ let content3 = WalkthroughContent(heading: "Enjoyable",
 
 let walkthroughContentViewController = WalkthroughContentViewController()
 walkthroughContentViewController.walkthroughContent = content3
-walkthroughContentViewController.view.frame.size = CGSize(width: 375, height: 667)
 
-PlaygroundPage.current.liveView = walkthroughContentViewController.view
+let (parentVC, _) = traitControllers(device: .pad,
+                                     orientation: .portrait,
+                                     child: walkthroughContentViewController)
+
+PlaygroundPage.current.liveView = parentVC.view
 
 

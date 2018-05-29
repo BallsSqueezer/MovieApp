@@ -7,5 +7,9 @@ import PlaygroundSupport
 let walkthroughViewModel = WalkthroughViewModel()
 
 let walkthroughPageViewController = WalkthroughPageViewController(viewModel: walkthroughViewModel)
-walkthroughPageViewController.view.frame.size = CGSize(width: 375, height: 667)
-PlaygroundPage.current.liveView = walkthroughPageViewController.view
+
+let (parentVC, _) = traitControllers(device: .pad,
+                                     orientation: .portrait,
+                                     child: walkthroughPageViewController)
+
+PlaygroundPage.current.liveView = parentVC.view
