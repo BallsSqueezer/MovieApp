@@ -6,7 +6,7 @@
 //  Copyright © 2018 Hien Tran. All rights reserved.
 //
 
-protocol ResultProtocol {
+public protocol ResultProtocol {
     associatedtype Value
     associatedtype Error: Swift.Error
     
@@ -15,20 +15,20 @@ protocol ResultProtocol {
     init(error: Error)
 }
 
-enum NetworkResult<T, Error: Swift.Error>: ResultProtocol {
+public enum NetworkResult<T, Error: Swift.Error>: ResultProtocol {
     case success(T)
     case failure(Error)
     
-    init(value: T) {
+    public init(value: T) {
         self = .success(value)
     }
     
-    init(error: Error) {
+    public init(error: Error) {
         self = .failure(error)
     }
 }
 
-enum NetworkError: Swift.Error {
+public enum NetworkError: Swift.Error {
     case invalidData
     case underlying(Swift.Error)
     

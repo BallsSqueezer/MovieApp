@@ -105,9 +105,8 @@ public class WalkthroughPageViewController: UIPageViewController {
     
     @objc private func nextButtonTapped(sender: UIButton) {
         if viewModel.isInLastIndex {
-            dismiss(animated: true) {
-                UserDefaults.standard.set(true, forKey: UserDefault.Walkthrough.didWatchWalkthrough)
-            }
+            UserDefaults.standard.set(true, forKey: UserDefault.Walkthrough.didWatchWalkthrough)
+            dismiss(animated: true, completion: nil)
         } else {
             let nextIndex = viewModel.currentIndex + 1
             guard let nextWalkthroughViewController = viewController(at: nextIndex) else { return }

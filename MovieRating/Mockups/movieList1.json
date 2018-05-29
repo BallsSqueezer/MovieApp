@@ -1,0 +1,124 @@
+{
+    "results": [
+        {
+            "vote_count": 132,
+            "id": 437557,
+            "video": false,
+            "vote_average": 6.3,
+            "title": "Blockers",
+            "popularity": 18.694708,
+            "poster_path": "/cx0LpfM6Drla8uzFfMT09uqKPRu.jpg",
+            "original_language": "en",
+            "original_title": "Blockers",
+            "genre_ids": [
+                35
+            ],
+            "backdrop_path": "/fqPIDVSTl6f1l02fb2rRVYPl5JE.jpg",
+            "adult": false,
+            "overview": "When three parents discover their daughters’ pact to lose their virginity at prom, they launch a covert one-night operation to stop the teens from sealing the deal.",
+            "release_date": "2018-03-30"
+        },
+        {
+            "vote_count": 40,
+            "id": 460668,
+            "video": false,
+            "vote_average": 6.4,
+            "title": "I Feel Pretty",
+            "popularity": 18.562964,
+            "poster_path": "/bZe6x2fKtwVDsAvZQ9fnIJznBrc.jpg",
+            "original_language": "en",
+            "original_title": "I Feel Pretty",
+            "genre_ids": [
+                35
+            ],
+            "backdrop_path": "/7XM7kxa3U2g8TO3OGSiETCroNRD.jpg",
+            "adult": false,
+            "overview": "A head injury causes a woman to develop an extraordinary amount of confidence and believe she's drop dead gorgeous.",
+            "release_date": "2018-04-20"
+        },
+        {
+            "vote_count": 35,
+            "id": 465136,
+            "video": false,
+            "vote_average": 6.8,
+            "title": "Every Day",
+            "popularity": 18.562061,
+            "poster_path": "/4UnME3icxSspwL0UoGZNSyyp7Xs.jpg",
+            "original_language": "en",
+            "original_title": "Every Day",
+            "genre_ids": [
+                18,
+                14,
+                10749
+            ],
+            "backdrop_path": "/hcoeD3oLP7t2dwMK7mnRAUkUxWS.jpg",
+            "adult": false,
+            "overview": "16-year old Rhiannon falls in love with a mysterious spirit named “A” that inhabits a different body every day. Feeling an unmatched connection, Rhiannon and “A” work each day to find each other, not knowing what the next day will bring.",
+            "release_date": "2018-02-22"
+        },
+        {
+            "vote_count": 169,
+            "id": 423646,
+            "video": false,
+            "vote_average": 7.1,
+            "title": "In the Fade",
+            "popularity": 18.366764,
+            "poster_path": "/qaLbKxjHaOkY7lT6jmsS1lsRocy.jpg",
+            "original_language": "de",
+            "original_title": "Aus dem Nichts",
+            "genre_ids": [
+                18,
+                80
+            ],
+            "backdrop_path": "/en4eaSgqL18UYIRSp86fSi4iZvL.jpg",
+            "adult": false,
+            "overview": "Katja's life falls apart in the blink of an eye when two neo-Nazis kill her husband and 6-year-old son in a bomb attack. Her quest for justice soon pushes her to the edge as the two suspects stand trial for murder.",
+            "release_date": "2017-11-23"
+        },
+        {
+            "vote_count": 25,
+            "id": 454619,
+            "video": false,
+            "vote_average": 5.2,
+            "title": "Overboard",
+            "popularity": 17.947045,
+            "poster_path": "/gaHknuun1VPPugkTsSfB8PejKVg.jpg",
+            "original_language": "en",
+            "original_title": "Overboard",
+            "genre_ids": [
+                10749,
+                35
+            ],
+            "backdrop_path": "/6PQyCsluWxE0LPlp2YB6IkMqVQj.jpg",
+            "adult": false,
+            "overview": "A spoiled, wealthy yacht owner is thrown overboard and becomes the target of revenge from his mistreated employee. A remake of the 1987 comedy.",
+            "release_date": "2018-05-03"
+        },
+        {
+            "vote_count": 7,
+            "id": 502682,
+            "video": false,
+            "vote_average": 6,
+            "title": "Book Club",
+            "popularity": 17.791403,
+            "poster_path": "/zHGf3PWSqwt3X1UEIO2ythLwvKO.jpg",
+            "original_language": "en",
+            "original_title": "Book Club",
+            "genre_ids": [
+                35,
+                10749
+            ],
+            "backdrop_path": "/pozA8qiFEVY2A2ynM1mQwwhyQTW.jpg",
+            "adult": false,
+            "overview": "Four lifelong friends have their lives forever changed after reading Fifty Shades of Grey in their monthly book club.",
+            "release_date": "2018-05-18"
+        },
+    ],
+    "page": 3,
+    "total_results": 1032,
+    "dates": {
+        "maximum": "2018-05-27",
+        "minimum": "2018-04-09"
+    },
+    "total_pages": 52
+}

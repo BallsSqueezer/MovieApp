@@ -14,9 +14,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-
-        let movieListViewController = MovieListViewController()
-//        
+        
+        let movieListViewController = MovieListViewController(networkManager: NetworkManager())
+        
         let nowPlayingNavigationController = UINavigationController(rootViewController: movieListViewController)
         nowPlayingNavigationController.tabBarItem.title = "Now Playing"
         nowPlayingNavigationController.tabBarItem.image = UIImage(named: "nowplaying")

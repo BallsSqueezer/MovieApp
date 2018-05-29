@@ -89,6 +89,5 @@ public class WalkthroughContentViewController: UIViewController {
             contentLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             contentLabel.leftAnchor.constraint(lessThanOrEqualTo: view.leftAnchor, constant: 30)
         ])
-        
     }
 }

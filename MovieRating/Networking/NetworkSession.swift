@@ -7,12 +7,12 @@
 //
 import Foundation
 
-protocol NetworkSession {
+public protocol NetworkSession {
     func loadData(from url: URL, completionHandler: @escaping (NetworkResult<JSON, NetworkError>) -> Void)
 }
 
 extension URLSession: NetworkSession {
-    func loadData(from url: URL, completionHandler: @escaping (NetworkResult<JSON, NetworkError>) -> Void) {
+    public func loadData(from url: URL, completionHandler: @escaping (NetworkResult<JSON, NetworkError>) -> Void) {
         let task = dataTask(with: url) { (data, _, error) in
             if let error = error {
                 let err = NetworkError(error: error)

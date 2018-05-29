@@ -11,7 +11,7 @@ import AFNetworking
 
 final public class MovieListViewController: UIViewController {
     
-    private let networkManager = NetworkManager()
+    private let networkManager: NetworkManager
     
     private let viewModel = MovieListViewModel()
     
@@ -57,7 +57,8 @@ final public class MovieListViewController: UIViewController {
         return control
     }()
     
-    public init() {
+    public init(networkManager: NetworkManager) {
+        self.networkManager = networkManager
         super.init(nibName: nil, bundle: nil)
         viewModel.delegate = self
     }
@@ -74,10 +75,14 @@ final public class MovieListViewController: UIViewController {
         view = tableView
         
         networkManager.requestMovieList { [weak self] movies in
-            self?.viewModel.updateMovieList(movies)
-            
             DispatchQueue.main.async {
                 self?.navigationItem.titleView = self?.searchController.searchBar
+                
+                if movies.count > 0 {
+                    self?.viewModel.updateMovieList(movies)
+                } else {
+                    self?.showNetworkError()
+                }
             }
         }
     }
@@ -85,16 +90,16 @@ final public class MovieListViewController: UIViewController {
     override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-         let didWatchWalkthrough = UserDefaults.standard.value(forKey: UserDefault.Walkthrough.didWatchWalkthrough) as? Bool ?? false
-        
-        if !didWatchWalkthrough {
-            let walkthroughViewController = WalkthroughPageViewController(viewModel: WalkthroughViewModel())
-            present(walkthroughViewController, animated: true, completion: nil)
-        }
+//        let didWatchWalkthrough = UserDefaults.standard.value(forKey: UserDefault.Walkthrough.didWatchWalkthrough) as? Bool ?? false
+//        
+//        if !didWatchWalkthrough {
+//            let walkthroughViewController = WalkthroughPageViewController(viewModel: WalkthroughViewModel())
+//            present(walkthroughViewController, animated: true, completion: nil)
+//        }
     }
     
     private func showNetworkError(){
-        let alert = UIAlertController(title: "Whoops", message: "Network Error. Plese check your network connection", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Oopps", message: "Network Error. Plese check your network connection", preferredStyle: .alert)
         let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
@@ -139,28 +144,30 @@ extension MovieListViewController: UITableViewDataSource, UITableViewDelegate {
         cell.overviewLabel.text = movie.overview
         
         //made the poster image fade in
-        let fullPosterUrl = "https://image.tmdb.org/t/p/w342" + movie.posterPath!
-        let url = URL(string: fullPosterUrl)!
-        let imageRequest = URLRequest(url: url)
-        
-        
-        cell.posterImageView.setImageWith(
-            imageRequest,
-            placeholderImage: nil,
-            success: { (imageRequest, imageResponse, image) -> Void in
-                if imageResponse != nil{
-                    cell.posterImageView.alpha = 0.0
-                    cell.posterImageView.image = image
-                    
-                    UIView.animate(withDuration: 0.3, animations: {
-                        cell.posterImageView.alpha = 1.0
-                    })
-                } else{
-                    cell.posterImageView.image = image
-                }
-            },
-            failure: nil
-        )
+        if
+            let posterPath = movie.posterPath,
+            let url = URL(string: "https://image.tmdb.org/t/p/w342" + posterPath)
+        {
+            let imageRequest = URLRequest(url: url)
+                
+            cell.posterImageView.setImageWith(
+                imageRequest,
+                placeholderImage: nil,
+                success: { (imageRequest, imageResponse, image) -> Void in
+                    if imageResponse != nil{
+                        cell.posterImageView.alpha = 0.0
+                        cell.posterImageView.image = image
+                        
+                        UIView.animate(withDuration: 0.3, animations: {
+                            cell.posterImageView.alpha = 1.0
+                        })
+                    } else{
+                        cell.posterImageView.image = image
+                    }
+                },
+                failure: nil
+            )
+        }
 
         return cell
     }

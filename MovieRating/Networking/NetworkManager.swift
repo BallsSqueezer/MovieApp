@@ -8,14 +8,14 @@
 
 import Foundation
 
-final class NetworkManager {
+public final class NetworkManager {
     private let host = "api.themoviedb.org"   //"https://image.tmdb.org/t/p/w342"
     private let scheme = "https"
     private let apiKey = "dc252f7444d39f39197952cf36f30ee4" //a07e22bc18f5cb106bfe4cc1f83ad8ed"
     
     private let session: NetworkSession
     
-    init(session: NetworkSession = URLSession.shared) {
+    public init(session: NetworkSession = URLSession.shared) {
         self.session = session
     }
     

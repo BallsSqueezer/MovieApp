@@ -2,6 +2,8 @@
 
 /*
  [ ] Remove in dex from WalkthroughContent
- [ ] Mockup server
  [ ] Screen Size
+ [ ] Locale
+ [ ] Top rating
+ [ ] Cocoa pod keys
 */
