@@ -5,19 +5,20 @@
 //  Created by Hien Quang Tran on 24/5/18.
 //  Copyright © 2018 Hien Tran. All rights reserved.
 //
+import Foundation
 
 public struct WalkthroughViewModel {
     
     private let walkthroughContents = [
-        WalkthroughContent(heading: "Personalize",
+        WalkthroughContent(heading: NSLocalizedString("Walkthrough_personalize_title", comment: ""),
                            imageFile: "walkthru1",
-                           content: "We have everything that suits your style"),
-        WalkthroughContent(heading: "Discover",
+                           content: NSLocalizedString("Walkthrough_personalize_content", comment: "")),
+        WalkthroughContent(heading: NSLocalizedString("Walkthrough_discover_title", comment: ""),
                            imageFile: "walkthru4",
-                           content: "Searching for your favourite movies can't never be easier"),
-        WalkthroughContent(heading: "Enjoyable",
+                           content: NSLocalizedString("Walkthrough_discover_content", comment: "")),
+        WalkthroughContent(heading: NSLocalizedString("Walkthrough_enjoyable_title", comment: ""),
                            imageFile: "walkthru5",
-                           content: "Enjoy you favourite movies with friends and family")
+                           content: NSLocalizedString("Walkthrough_enjoyable_content", comment: ""))
     ]
     
     private var _currentIndex = 0

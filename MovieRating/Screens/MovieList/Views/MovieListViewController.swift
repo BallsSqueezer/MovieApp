@@ -90,12 +90,12 @@ final public class MovieListViewController: UIViewController {
     override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-//        let didWatchWalkthrough = UserDefaults.standard.value(forKey: UserDefault.Walkthrough.didWatchWalkthrough) as? Bool ?? false
-//        
-//        if !didWatchWalkthrough {
-//            let walkthroughViewController = WalkthroughPageViewController(viewModel: WalkthroughViewModel())
-//            present(walkthroughViewController, animated: true, completion: nil)
-//        }
+        let didWatchWalkthrough = UserDefaults.standard.value(forKey: UserDefault.Walkthrough.didWatchWalkthrough) as? Bool ?? false
+        
+        if !didWatchWalkthrough {
+            let walkthroughViewController = WalkthroughPageViewController(viewModel: WalkthroughViewModel())
+            present(walkthroughViewController, animated: true, completion: nil)
+        }
     }
     
     private func showNetworkError(){
