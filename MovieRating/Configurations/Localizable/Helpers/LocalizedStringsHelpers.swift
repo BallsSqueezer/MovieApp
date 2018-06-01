@@ -9,7 +9,7 @@
 import Foundation
 
 /// Use this class as a look up destination for Bundle. Eg: `let bundle = Bundle(for: BundleClass.self)`.
-private class BundleClass {}
+public class BundleClass {}
 
 public let targetBundle = Bundle(for: BundleClass.self)
 

@@ -9,7 +9,7 @@
 import Foundation
 
 extension Bundle {
-    public static func loadJSONFile(name: String, inBundle bundle: Bundle = .main) -> JSON? {
+    public static func loadJSONFile(name: String, inBundle bundle: Bundle = targetBundle) -> JSON? {
         guard
             let fileURL = bundle.url(forResource: name, withExtension: "json"),
             let data =  try? Data(contentsOf: fileURL),

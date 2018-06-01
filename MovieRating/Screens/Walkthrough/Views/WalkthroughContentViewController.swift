@@ -43,8 +43,7 @@ public class WalkthroughContentViewController: UIViewController {
             headingLabel.text = content.heading
             contentLabel.text = content.content
             
-            let bundle = Bundle(for: WalkthroughContentViewController.self)
-            contentImageView.image = UIImage(named: content.imageFile, in: bundle, compatibleWith: nil)
+            contentImageView.image = UIImage(named: content.imageFile, in: targetBundle, compatibleWith: nil)
         }
     }
     
