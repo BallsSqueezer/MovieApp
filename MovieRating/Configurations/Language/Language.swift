@@ -6,21 +6,23 @@
 //  Copyright © 2018 Hien Tran. All rights reserved.
 //
 
-public enum Language {
+public enum Language: String {
     case de
     case en
     case es
     case fr
     case ja
+    case vi
     
     public init?(_ language: String) {
         switch language.lowercased() {
-        case "de":  self = .de
-        case "en":  self = .en
-        case "es":  self = .es
-        case "fr":  self = .fr
-        case "ja":  self = .ja
-        default:    return nil
+        case "en": self = .en
+        case "de": self = .de
+        case "es": self = .es
+        case "fr": self = .fr
+        case "ja": self = .ja
+        case "vi": self = .vi
+        default:   return nil
         }
     }
     

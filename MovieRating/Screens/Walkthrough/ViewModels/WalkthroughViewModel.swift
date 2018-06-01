@@ -8,17 +8,16 @@
 import Foundation
 
 public struct WalkthroughViewModel {
-    
     private let walkthroughContents = [
-        WalkthroughContent(heading: NSLocalizedString("Walkthrough_personalize_title", comment: ""),
+        WalkthroughContent(heading: LocalizedStrings.walkthroughPersonalizeTitle(),
                            imageFile: "walkthru1",
-                           content: NSLocalizedString("Walkthrough_personalize_content", comment: "")),
-        WalkthroughContent(heading: NSLocalizedString("Walkthrough_discover_title", comment: ""),
+                           content: LocalizedStrings.walkthroughPersonalizeContent()),
+        WalkthroughContent(heading: LocalizedStrings.walkthroughDiscoverTitle(),
                            imageFile: "walkthru4",
-                           content: NSLocalizedString("Walkthrough_discover_content", comment: "")),
-        WalkthroughContent(heading: NSLocalizedString("Walkthrough_enjoyable_title", comment: ""),
+                           content: LocalizedStrings.walkthroughDiscoverContent()),
+        WalkthroughContent(heading: LocalizedStrings.walkthroughEnjoyableTitle(),
                            imageFile: "walkthru5",
-                           content: NSLocalizedString("Walkthrough_enjoyable_content", comment: ""))
+                           content: LocalizedStrings.walkthroughDiscoverContent())
     ]
     
     private var _currentIndex = 0
