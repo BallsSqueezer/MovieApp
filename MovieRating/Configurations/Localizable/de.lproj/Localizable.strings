@@ -1,0 +1,19 @@
+/* 
+  Localizable.strings
+  MovieRating
+
+  Created by Hien Quang Tran on 29/5/18.
+  Copyright © 2018 Hien Tran. All rights reserved.
+*/
+
+// MARK: - Walkthrough
+"Walkthrough_personalize_title" = "Personifizieren";
+"Walkthrough_personalize_content" = "Wir haben alles, was zu Ihrem Stil passt";
+
+"Walkthrough_discover_title" = "Entdecken";
+"Walkthrough_discover_content" = "Die Suche nach Ihren Lieblingsfilmen wird nie einfacher sein";
+
+"Walkthrough_enjoyable_title" = "Angenehm";
+"Walkthrough_enjoyable_content" = "Genießen Sie Ihre Lieblingsfilme mit Freunden und Familie";
+
+

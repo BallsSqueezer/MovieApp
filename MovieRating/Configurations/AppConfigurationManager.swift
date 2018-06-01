@@ -9,18 +9,16 @@ import Foundation
 
 public struct AppConfigurationManager {
     
-    fileprivate static var stack = [AppConfiguration()]
+    private static var _current = AppConfiguration()
     
     public static var current: AppConfiguration! {
-        return stack.last
+        return _current
     }
     
-    public static func replaceCurrentConfig(
+    public static func updateCurrentConfig(
         language: Language = AppConfigurationManager.current.language,
         locale: Locale = AppConfigurationManager.current.locale)
     {
-        let cofig = AppConfiguration(language: language, locale: locale)
-        stack.append(cofig)
-        stack.remove(at: stack.count - 2)
+        _current = AppConfiguration(language: language, locale: locale)
     }
 }

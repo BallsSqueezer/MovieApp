@@ -13,6 +13,7 @@ public enum Language: String {
     case fr
     case ja
     case vi
+    case be
     
     public init?(_ language: String) {
         switch language.lowercased() {
@@ -22,6 +23,7 @@ public enum Language: String {
         case "fr": self = .fr
         case "ja": self = .ja
         case "vi": self = .vi
+        case "be": self = .be
         default:   return nil
         }
     }
