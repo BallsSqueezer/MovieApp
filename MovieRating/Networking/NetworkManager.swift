@@ -23,7 +23,7 @@ public final class NetworkManager {
         session.loadData(from: url, completionHandler: completionHandler)
     }
     
-    func requestMovieList(completion: @escaping ([Movie]) -> Void) {
+    func requestMovieList(path: String, completion: @escaping ([Movie]) -> Void) {
         let parameters = [
             "api_key": apiKey,
             "language": "en-US",
@@ -33,7 +33,7 @@ public final class NetworkManager {
         var urlComponents = URLComponents()
         urlComponents.scheme = scheme
         urlComponents.host = host
-        urlComponents.path = "/3/movie/\(RequestAPI.nowPlaying.rawValue)"
+        urlComponents.path = "/3/movie/\(path)"
         urlComponents.queryItems = parameters.map { URLQueryItem(name: $0.key, value: $0.value) }
         
         guard let url = urlComponents.url else {
@@ -50,22 +50,6 @@ public final class NetworkManager {
             case .failure(let error):
                 completion([])
                 print("⚠️ \(error) ⚠️")
-            }
-        }
-    }
-    
-    enum RequestAPI: String {
-        case nowPlaying = "now_playing"
-        case topRated = "top_rated"
-        
-        init?(_ path: String) {
-            switch path {
-            case "now_playing":
-                self = .nowPlaying
-            case "top_rated":
-                self = .topRated
-            default:
-                return nil
             }
         }
     }

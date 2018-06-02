@@ -15,14 +15,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        let movieListViewController = MovieListViewController(networkManager: NetworkManager())
-        
-        let nowPlayingNavigationController = UINavigationController(rootViewController: movieListViewController)
+        let nowPLayingMovieListViewController = MovieListViewController(path: "now_playing", networkManager: NetworkManager())
+        let nowPlayingNavigationController = UINavigationController(rootViewController: nowPLayingMovieListViewController)
         nowPlayingNavigationController.tabBarItem.title = "Now Playing"
         nowPlayingNavigationController.tabBarItem.image = UIImage(named: "nowplaying")
 
-        let topRatedNavigationController = UINavigationController(rootViewController: UIViewController())
-//        topRatedController.endpoint = "top_rated"
+        let topRatedMovieListViewController = MovieListViewController(path: "top_rated", networkManager: NetworkManager())
+        let topRatedNavigationController = UINavigationController(rootViewController: topRatedMovieListViewController)
         topRatedNavigationController.tabBarItem.title = "Top Rated"
         topRatedNavigationController.tabBarItem.image = UIImage(named: "toprated")
 

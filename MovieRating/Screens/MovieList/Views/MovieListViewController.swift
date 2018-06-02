@@ -17,6 +17,8 @@ final public class MovieListViewController: UIViewController {
     
     private var isSearchActive: Bool = false
     
+    private let path: String
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -57,8 +59,10 @@ final public class MovieListViewController: UIViewController {
         return control
     }()
     
-    public init(networkManager: NetworkManager) {
+    public init(path: String, networkManager: NetworkManager) {
+        self.path = path
         self.networkManager = networkManager
+        
         super.init(nibName: nil, bundle: nil)
         viewModel.delegate = self
     }
@@ -74,7 +78,7 @@ final public class MovieListViewController: UIViewController {
         
         view = tableView
         
-        networkManager.requestMovieList { [weak self] movies in
+        networkManager.requestMovieList(path: path) { [weak self] movies in
             DispatchQueue.main.async {
                 self?.navigationItem.titleView = self?.searchController.searchBar
                 
@@ -106,7 +110,7 @@ final public class MovieListViewController: UIViewController {
     }
     
     @objc private func refreshControlAction(_ refreshControl: UIRefreshControl) {
-        networkManager.requestMovieList { [weak self] movies in
+        networkManager.requestMovieList(path: path) { [weak self] movies in
             DispatchQueue.main.async {
                 self?.refreshControl.endRefreshing()
                 if movies.count > 0 {
