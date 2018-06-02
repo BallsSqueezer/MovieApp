@@ -6,6 +6,8 @@
 - Run `pod install` to instal dependencies.
 - Refer to [The Movie Database API](https://developers.themoviedb.org/3/getting-started/introduction) for API documentations.
 
+[![](/Screenshots/SwitchLanguage.gif?raw=true)](https://imgur.com/SbklcFY)
+
 ## Contributing
 
 Suggestions, feedback, pull requests and bug report are welcomed
