@@ -8,8 +8,7 @@ let movieMockup1 = "movie1"
 let movieMockup2 = "movie2"
 let movieMockup3 = "movie3"
 
-let bundle = Bundle.init(for: MovieDetailViewController.self)
-let mockupJSON = Bundle.loadJSONFile(name: movieMockup1, inBundle: bundle)!
+let mockupJSON = Bundle.loadJSONFile(name: movieMockup1)!
 let movie = Movie(json: mockupJSON)
 
 let movieDetailViewController = MovieDetailViewController()

@@ -3,7 +3,6 @@
     <pages>
         <page name='MovieListViewControllerPlayground'/>
         <page name='MovieDetailViewControllerPlayground'/>
-        <page name='TODO'/>
         <page name='WalkthroughPageViewControllerPlayground'/>
         <page name='WalkthroughContentViewControllerPlayground'/>
     </pages>
