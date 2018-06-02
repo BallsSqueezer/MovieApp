@@ -14,6 +14,7 @@ Suggestions, feedback, pull requests and bug report are welcomed
 
 ## TODO
 - [ ] Implement `Top Rated` tab
+- [ ] Localize the `Next` button in walkthrough screen
 - [ ] Move the API key to Cocoa Pod keys
 - [ ] Add documents
 - [ ] Update UI in Movie Detail Screen
