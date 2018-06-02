@@ -2,5 +2,15 @@
 <Timeline
    version = "3.0">
    <TimelineItems>
+      <LoggerValueHistoryTimelineItem
+         documentLocation = "file:///Users/hienquangtran/DEV/S%20I%20Z%20E%20S%20-%20P%20R%20O%20J%20E%20C%20T%20S/BLOGS/MovieApp/MovieRatingPlaygound.playground/Pages/WalkthroughPageViewControllerPlayground.xcplaygroundpage#CharacterRangeLen=0&amp;CharacterRangeLoc=490&amp;EndingColumnNumber=74&amp;EndingLineNumber=13&amp;StartingColumnNumber=74&amp;StartingLineNumber=13&amp;Timestamp=549672710.003991"
+         selectedRepresentationIndex = "0"
+         shouldTrackSuperviewWidth = "NO">
+      </LoggerValueHistoryTimelineItem>
+      <LoggerValueHistoryTimelineItem
+         documentLocation = "file:///Users/hienquangtran/DEV/S%20I%20Z%20E%20S%20-%20P%20R%20O%20J%20E%20C%20T%20S/BLOGS/MovieApp/MovieRatingPlaygound.playground/Pages/WalkthroughPageViewControllerPlayground.xcplaygroundpage#CharacterRangeLen=1&amp;CharacterRangeLoc=490&amp;EndingColumnNumber=0&amp;EndingLineNumber=14&amp;StartingColumnNumber=74&amp;StartingLineNumber=13&amp;Timestamp=549672710.004166"
+         selectedRepresentationIndex = "0"
+         shouldTrackSuperviewWidth = "NO">
+      </LoggerValueHistoryTimelineItem>
    </TimelineItems>
 </Timeline>
