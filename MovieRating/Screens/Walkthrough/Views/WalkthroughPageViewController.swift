@@ -99,8 +99,8 @@ public class WalkthroughPageViewController: UIPageViewController {
         pageControl.currentPage = viewModel.currentIndex
         
         let title = viewModel.isInLastIndex
-            ? "DONE"
-            : "NEXT"
+            ? LocalizedStrings.doneButtonTitle()
+            : LocalizedStrings.nextButtonTitle()
         nextButton.setTitle(title, for: .normal)
     }
     

@@ -30,4 +30,12 @@ public struct LocalizedStrings {
     static func walkthroughEnjoyableContent() -> String {
         return localizedString(key: "Walkthrough_enjoyable_content")
     }
+    
+    static func nextButtonTitle() -> String {
+        return localizedString(key: "Next_button_title")
+    }
+    
+    static func doneButtonTitle() -> String {
+        return localizedString(key: "Done_button_title")
+    }
 }
