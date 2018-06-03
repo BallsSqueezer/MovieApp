@@ -13,11 +13,9 @@ public final class NetworkManager {
     private let scheme = "https"
     private let apiKey = "dc252f7444d39f39197952cf36f30ee4" //a07e22bc18f5cb106bfe4cc1f83ad8ed"
     
-    private let session: NetworkSession
+    private let session: NetworkSession = AppConfigurationManager.current.networkSession
     
-    public init(session: NetworkSession = URLSession.shared) {
-        self.session = session
-    }
+    public init() {  }
     
     private func loadData(from url: URL, completionHandler: @escaping (NetworkResult<JSON, NetworkError>) -> Void) {
         session.loadData(from: url, completionHandler: completionHandler)

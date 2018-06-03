@@ -12,16 +12,15 @@ let topRated = "top_rated"
 let movieListMockupJSON1 = "movieList1"
 let movieListMockupJSON2 = "movieList2"
 
-let mockupJSON = Bundle.loadJSONFile(name: movieListMockupJSON2)!
+let mockupJSON = Bundle.loadJSONFile(name: movieListMockupJSON1)!
 let mockupSuccessNetworkSession = NetworkSessionMock(networkResult: NetworkResult(value: mockupJSON))
 
 // Failure mockup
 let mockupFailureNetworkSession = NetworkSessionMock(networkResult: NetworkResult(error: NetworkError.invalidData))
 
-// Let's start testing
-let networkManager = NetworkManager(session: mockupSuccessNetworkSession)
-let viewController = MovieListViewController(path: topRated, networkManager: networkManager)
-
+// 
+AppConfigurationManager.updateCurrentConfig(networkSession: mockupSuccessNetworkSession)
+let viewController = MovieListViewController(path: topRated)
 let (parrentVC, _) = traitControllers(device: .phone5_8inch,
                                       orientation: .portrait,
                                       child: viewController)

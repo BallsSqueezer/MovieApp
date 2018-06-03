@@ -11,8 +11,7 @@ import AFNetworking
 
 final public class MovieListViewController: UIViewController {
     
-    private let networkManager: NetworkManager
-    
+    private let networkManager = NetworkManager()
     private let viewModel = MovieListViewModel()
     
     private var isSearchActive: Bool = false
@@ -59,9 +58,8 @@ final public class MovieListViewController: UIViewController {
         return control
     }()
     
-    public init(path: String, networkManager: NetworkManager) {
+    public init(path: String) {
         self.path = path
-        self.networkManager = networkManager
         
         super.init(nibName: nil, bundle: nil)
         viewModel.delegate = self

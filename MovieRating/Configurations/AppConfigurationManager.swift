@@ -16,9 +16,10 @@ public struct AppConfigurationManager {
     }
     
     public static func updateCurrentConfig(
+        networkSession: NetworkSession = AppConfigurationManager.current.networkSession,
         language: Language = AppConfigurationManager.current.language,
         locale: Locale = AppConfigurationManager.current.locale)
     {
-        _current = AppConfiguration(language: language, locale: locale)
+        _current = AppConfiguration(networkSession: networkSession, language: language, locale: locale)
     }
 }
