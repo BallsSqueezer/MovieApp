@@ -1,5 +1,15 @@
 
-**MovieApp** is a demo project that demostrates Playground Driven Developemnt concept. The concept is inspired by [Kick Starter](https://github.com/kickstarter/ios-oss). In this project, I was able to completely replace storyboards with playgrounds. It allows the developer to quickly switch between different environments (mockups, locale, languages, screen sizes, orientations) to ensure the UI (the thing that users see) looks perfect in all scenarios, without having to compile the code. Imagine the pain when we have to wait 3 minutes for the app to compile, test on 5 different languages, tap on 5 buttons to open a setting page, rotate the device, then finally realize that the title label is 5 pixels overlaped the button. With Playgound Driven Development, we can get rid of all those hassles. Although Playground is not rendering the UI immediately like React Native, but still it could save you a whole lot of time. Hopefully, Apple will improve Playground performance over the year
+As an iOS developer, it's just the matter of time before running into this situation when you spend tens of hours making you application pixel perfect. However, how can you ensure that your UI will still look perfect in different languages, locales, screen sizes, and orientations? You are probably thinking about
+- Go the device Settings
+- Change to the designed language
+- Wait to the device to reboot 
+- Install the app and wait for Xcode to compile
+- Open the app and navigate to the screen where you want to test
+- Repeat the process for other languages and devices
+
+The entire process can be tedious and time-consuming. Even when you just make a one-line change in your code, you end up spending more time to wait then to code. Even harder when your project grows and the UI starts getting more complex, testing becomes a nightmare. That is when Playground comes comes in to play.
+
+**MovieApp** is a demo project that demostrates Playground Driven Developemnt concept. The concept is inspired by [Kick Starter](https://github.com/kickstarter/ios-oss). In this project, I was able to completely replace storyboards with playgrounds. It allows the developer to quickly switch between different environments (mockups, locale, languages, screen sizes, orientations) to ensure the UI (the thing that users see) look perfect in all scenarios, without having to to recompile and re-run the application.
 
 ## Getting Started
 - Clone the project
